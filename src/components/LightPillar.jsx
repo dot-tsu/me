@@ -25,6 +25,7 @@ function LightPillar({
   const geometryRef = useRef(null)
   const mouseRef = useRef(new THREE.Vector2(0, 0))
   const timeRef = useRef(0)
+  const [opacity, setOpacity] = useState(0)
   const [webGLSupported, setWebGLSupported] = useState(true)
 
   // Check WebGL support
@@ -72,6 +73,9 @@ function LightPillar({
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     container.appendChild(renderer.domElement)
     rendererRef.current = renderer
+
+    // Fade in after initialization
+    setTimeout(() => setOpacity(1), 100)
 
     // Convert hex colors to RGB
     const parseColor = (hex) => {
@@ -355,7 +359,14 @@ function LightPillar({
   }
 
   return (
-    <div ref={containerRef} className={`w-full h-full absolute top-0 left-0 ${className}`} style={{ mixBlendMode }} />
+    <div
+      ref={containerRef}
+      className={`w-full h-full absolute top-0 left-0 transition-opacity duration-[8s] ease-in-out ${className}`}
+      style={{
+        mixBlendMode,
+        opacity,
+      }}
+    />
   )
 }
 
