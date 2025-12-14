@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: oklch(98% 0.01 85);
+  --color-foreground: oklch(41.10% 0.012 9.99);
+  --color-primary: oklch(60% 0.056 74.14);
+
+  --font-heading: "Manrope", sans-serif;
+  --font-body: "Manrope", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-body antialiased flex flex-col justify-center items-center h-screen w-full overflow-hidden p-6 selection:bg-primary selection:text-background;
+  }
+
+  main {
+    @apply flex flex-col justify-center items-center space-y-24; 
+  }
+
+  h1 {
+    @apply text-4xl font-bold font-heading tracking-wide leading-[1.2];
+  }
+
+  p {
+    @apply text-lg text-primary font-medium tracking-wide;
+  }
+
+  ul {
+    @apply space-x-8;
+  }
+
+  a {
+    @apply text-foreground hover:text-primary transition-colors;
+  }
+}
