@@ -1,4 +1,5 @@
 ---
+import LightPillar from '../components/LightPillar'
 import '../styles/globals.css';
 ---
 
@@ -17,7 +18,10 @@ import '../styles/globals.css';
     />
   </head>
   <body>
-    <main>
+    <LightPillar
+      client:only="react"
+    />
+    <main class="z-1">
         <header class="flex flex-col items-center">
           <h1 class="text-[12rem] md:text-[15rem] font-black">.tsu</h1>
           <p class="text-4xl">software developer</p>
