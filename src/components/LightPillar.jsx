@@ -14,7 +14,7 @@ function LightPillar({
   pillarHeight = 0.2,
   noiseIntensity = 2,
   mixBlendMode = 'difference',
-  pillarRotation = 90,
+  pillarRotation = 75,
 }) {
   const containerRef = useRef(null)
   const rafRef = useRef(null)
