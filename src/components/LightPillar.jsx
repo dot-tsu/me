@@ -16,6 +16,7 @@ function LightPillar({
   mixBlendMode = 'difference',
   pillarRotation = 75,
 }) {
+  const [isMobile, setIsMobile] = useState(false)
   const containerRef = useRef(null)
   const rafRef = useRef(null)
   const rendererRef = useRef(null)
@@ -36,6 +37,16 @@ function LightPillar({
       setWebGLSupported(false)
       console.warn('WebGL is not supported in this browser')
     }
+  }, [])
+
+  // Check for mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   useEffect(() => {
@@ -226,7 +237,7 @@ function LightPillar({
         uPillarWidth: { value: pillarWidth },
         uPillarHeight: { value: pillarHeight },
         uNoiseIntensity: { value: noiseIntensity },
-        uPillarRotation: { value: pillarRotation },
+        uPillarRotation: { value: isMobile ? 0 : pillarRotation },
       },
       transparent: true,
       depthWrite: false,
@@ -345,6 +356,7 @@ function LightPillar({
     noiseIntensity,
     pillarRotation,
     webGLSupported,
+    isMobile,
   ])
 
   if (!webGLSupported) {
